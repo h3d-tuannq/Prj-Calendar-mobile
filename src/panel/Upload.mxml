@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" title="Upload"
+		xmlns:s="library://ns.adobe.com/flex/spark"  xmlns:ns="http://flex.apache.org/experimental/ns"
+		initialize="Upload_initializeHandler(event)"
+		>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			import model.Nghiphep;
+			import model.NhanVien;
+			
+			public var nhanvien:NhanVien;
+			
+			
+			[Bindable]
+			public static var nghiPhep:Nghiphep;
+			
+			protected function add_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				nghiPhep = new Nghiphep();
+				nghiPhep.id = 1;
+				nghiPhep.nhanVienId = nhanvien.id;
+				nghiPhep.lydo = lydo.text;
+				nghiPhep.soNgay = "1";
+				nghiPhep.tuNgay = batdau.selectedDate;
+				nghiPhep.toiNgay = denngay.selectedDate;
+				nghiPhep.trangThai = "Da duoc chap nhan";
+				
+				if(ckbox_sang.selected)
+					nghiPhep.caNghi = "1";
+				else if(ckbox_chieu.selected)
+					nghiPhep.caNghi = "2";
+				else if(ckbox_cangay.selected)
+					nghiPhep.caNghi = "3";
+				
+				ArrayList(data.ycNghiList).addItem(nghiPhep);
+				navigator.popView();	
+			}
+			
+			protected function cancel_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.popView();
+				
+			}
+			
+			override public function createReturnObject():Object {
+				return Object(data);
+			}
+			
+			protected function Upload_initializeHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				nhanvien = data.nhanvien; 
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:navigationContent >
+		<s:VGroup paddingLeft="5">
+			<s:Image width="150%" height="150%" source="image/Home.png" click="navigator.popToFirstView();"/>
+		</s:VGroup>
+	</s:navigationContent>
+	
+	<s:Panel  width="100%" height="100%" title="Tao Yeu Cau Nghi ...">
+		<s:Scroller width="100%" height="100%" >
+		<s:VGroup width="100%" paddingTop="20" gap="20" padding="10">
+			<s:HGroup width="100%" >
+				<s:HGroup width="50%"   verticalAlign="middle">
+					<s:Label text="Tu Ngay" width="25%"/>
+					<s:DateSpinner id="batdau" />
+				</s:HGroup>
+				
+				<s:HGroup width="50%"  verticalAlign="middle">
+					<s:Label text="Den Ngay" width="25%"/>
+					<s:DateSpinner id="denngay" />
+				</s:HGroup> 
+			</s:HGroup>
+			
+			<s:HGroup gap="0" horizontalAlign="center" width="100%" paddingBottom="20" verticalAlign="middle"
+					  paddingLeft="60">
+				<s:RadioButton selected="true" width="30%"  label="Sáng" id="ckbox_sang">
+				</s:RadioButton>
+				<s:RadioButton width="30%" label="Chiều" id="ckbox_chieu">
+				</s:RadioButton>
+				<s:RadioButton width="30%"  label="Cả ngày" id="ckbox_cangay">
+				</s:RadioButton>
+			</s:HGroup>
+			
+			<s:HGroup width="100%"  verticalAlign="middle" >
+				<s:Label text="Ly Do :" width="12%"/>
+				<s:TextArea id="lydo" width="78%"  prompt="Ly Do Xin Nghi"  
+							 borderVisible="true" height="100" />
+			</s:HGroup> 
+			
+			<s:HGroup width="100%" paddingLeft="300" gap="20">
+				<s:Button label="Add" click="add_clickHandler(event)"/>
+				<s:Button label="Cancel" click="cancel_clickHandler(event)"/>
+			</s:HGroup>  
+		</s:VGroup>
+		</s:Scroller>
+	</s:Panel>
+	
+</s:View>

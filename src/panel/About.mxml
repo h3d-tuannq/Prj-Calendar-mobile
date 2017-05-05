@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="About Production">
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			public var BgimgCls:Class;
+			
+			override public function createReturnObject():Object {
+				return Object(data);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:navigationContent >
+		<s:VGroup paddingLeft="5">
+			<s:Image width="150%" height="150%" source="image/Home.png" click="navigator.popToFirstView();"/>
+		</s:VGroup>
+	</s:navigationContent>
+	
+	<s:Panel width="100%" height="100%" title="Prj-Calendar" fontSize="15">
+		<s:VGroup width="100%" paddingTop="50" textAlign="center" paddingLeft="190" >
+			<s:VGroup width="100%" height="100%" paddingLeft="95">
+				<s:Label text=" VERSION 1.0" fontSize="20"/>
+			</s:VGroup >
+			
+			<s:VGroup width="100%" height="100%" gap="10">
+				<s:VGroup width="100%" height="100%" paddingLeft="120">
+					<s:Label text="Develop by" />
+				</s:VGroup>
+				
+				<s:HGroup width="100%" height="100%"  paddingLeft="105">
+					<s:Label text="Nguyen Lan Anh" textAlign="center" />
+				</s:HGroup >
+				
+				<s:VGroup width="100%" height="100%" paddingLeft="72" >
+					<s:Label  text="Dai Hoc Cong Nghiep Ha Noi" textAlign="center" />
+				</s:VGroup>
+				
+			</s:VGroup>  
+			
+			<s:VGroup width="100%" height="100%" paddingLeft="130">
+				<s:Button label="Back" click="navigator.popView()" />
+			</s:VGroup>
+			
+		</s:VGroup>  
+		
+	</s:Panel>
+	
+</s:View>

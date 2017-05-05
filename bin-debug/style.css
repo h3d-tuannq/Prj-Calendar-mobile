@@ -1,0 +1,9 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace v "views.*";
+
+/* This is a TYPE SELECTOR demo */
+.lableBG{
+fillColor:#FF0000;
+}

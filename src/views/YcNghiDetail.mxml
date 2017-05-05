@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="Chi Tiet"
+		initialize="YcNghiDetail_initializeHandler(event)"
+		>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import model.Nghiphep;
+			
+			import util.DataUtil;
+			
+			protected function YcNghiDetail_initializeHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+			override public function createReturnObject():Object {
+				return Object(data);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:VGroup width="100%" height="100%" paddingTop="20" paddingLeft="100" gap="10" horizontalAlign="center">
+		
+		<s:HGroup width="100%">
+			<s:Label text="Ma :" width="25%" />
+			<s:Label  text="{Nghiphep(data.selectedItem).id}"/>
+		</s:HGroup>
+		
+		<s:HGroup width="100%">
+			<s:Label text="Ma Nhan Vien :" width="25%" />
+			<s:Label  text="{Nghiphep(data.selectedItem).nhanVienId}"/>
+		</s:HGroup>
+		
+		<s:HGroup width="100%">
+			<s:Label text="Nhan Vien :" width="25%" />
+			<s:Label  text="{Nghiphep(data.selectedItem).tenNV}"/>
+		</s:HGroup>
+		<s:HGroup width="100%" >
+				<s:Label text="Tu Ngay :" width="25%"/>
+				<s:Label text="{DataUtil.formatDate(Nghiphep(data.selectedItem).tuNgay)}"/>
+		</s:HGroup>
+		<s:HGroup width="100%">
+			<s:Label  text="Den Ngay :" width="25%" />
+			<s:Label text="{DataUtil.formatDate(Nghiphep(data.selectedItem).toiNgay)}"/>
+		</s:HGroup>
+		
+		<s:HGroup width="100%" >
+			<s:Label text="Ly Do:" width="25%"/>
+			<s:Label text="{Nghiphep(data.selectedItem).lydo}"/>
+		</s:HGroup>
+		
+		<s:HGroup width="100%" >
+			<s:Label text="So Ngay Nghi:" width="25%"/>
+			<s:Label text="{DataUtil.soNgayNghi(Nghiphep(data.selectedItem))}"/>
+		</s:HGroup>
+		
+		<s:HGroup width="100%" >
+			<s:Label text="Ca Nghi:" width="25%"/>
+			<s:Label text="{DataUtil.caNghi(Nghiphep(data.selectedItem))}"/>
+		</s:HGroup>
+	</s:VGroup>
+		
+	
+	
+</s:View>

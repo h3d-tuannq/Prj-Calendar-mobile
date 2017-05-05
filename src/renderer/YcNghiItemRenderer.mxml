@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"  width="100%">
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	<fx:Script>
+		<![CDATA[
+			import model.Nghiphep;
+			
+			import util.DataUtil;
+			
+			protected function playNewVideo_clickHandler(event:MouseEvent):void
+			{
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:VGroup id="ycNghi" width="100%" height="100"   paddingLeft="30" 
+			  paddingTop="5" paddingBottom="5" padding="10">
+		<s:HGroup width="100%" >
+				<s:Label width="25%"  fontSize="17" text="Ma :"  maxHeight="70" />
+				<s:Label fontSize="17" text="{Nghiphep(data).id}"  maxHeight="70" />
+		</s:HGroup>
+		<s:HGroup width="100%"  >
+			<s:Label width="25%" fontSize="17" text="Nhan Vien :"  maxHeight="70" />
+			<s:Label fontSize="17" text="{'['+Nghiphep(data).nhanVienId+'] '+Nghiphep(data).tenNV}"  maxHeight="70" />
+		</s:HGroup>
+		<s:HGroup width="100%"  >
+			<s:Label width="25%" fontSize="17" text="Thoi Gian Nghi :"  maxHeight="70" />
+			<s:Label fontSize="17" text="{DataUtil.formatDate(Nghiphep(data).tuNgay)+' -> '+DataUtil.formatDate(Nghiphep(data).toiNgay)}"  maxHeight="70" />
+		</s:HGroup>
+		
+		<s:HGroup width="100%"  >
+			<s:Label width="25%" fontSize="17" text="Ly Do"  maxHeight="70" />
+			<s:Label fontSize="17" text="{Nghiphep(data).lydo}"  maxHeight="70" />
+		</s:HGroup>  
+	</s:VGroup>
+</s:ItemRenderer>

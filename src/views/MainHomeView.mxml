@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:renderers="renderers.*" 
+		add="view1_addHandler(event)"
+		initialize="initYcNghiListData()" xmlns:ns="http://f-project.net/xmlns/fprj/2013"
+		xmlns:panel="panel.*"
+		>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			import spark.components.supportClasses.ViewReturnObject;
+			import spark.events.IndexChangeEvent;
+			
+			import model.Nghiphep;
+			
+			import panel.About;
+			import panel.Upload;
+			
+			import util.DataUtil;
+			
+			protected function initYcNghiListData():void
+			{
+					initData();
+			}
+			
+			protected function view1_addHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				var poppedViewReturnedObject:ViewReturnObject = navigator.poppedViewReturnedObject;
+				
+				if (poppedViewReturnedObject != null) 
+				{
+					if(poppedViewReturnedObject.object &&!(poppedViewReturnedObject.object is Nghiphep)){
+						dataModel = poppedViewReturnedObject.object;
+						ycNghiList.dataProvider = dataModel.ycNghiList;	
+					}
+					
+				}
+			}
+			
+			
+			protected function upLoad_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				navigator.pushView(Upload,dataModel);
+			}
+			
+			protected function listVideo_changeHandler(event:IndexChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				//			navigator.pushView(DetailView, new AllData(listFlex, listDP, listPK, listVideoFlex.selectedItem));
+			}
+			
+			
+			protected function about_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(About,dataModel);
+			}
+			
+			public var dataModel:Object;
+			
+			public function initData():void{
+				dataModel = DataUtil.initDataTest();
+				ycNghiDataProvider = dataModel.ycNghiList;
+				dataModel.nhanvien = DataUtil.initUser();
+				ycNghiList.dataProvider=dataModel.ycNghiList;
+			}
+			
+			[Bindable]
+			public var ycNghiDataProvider:ArrayList;
+			
+			
+			public function ycNghiList_change(event:Event):void{
+				dataModel.selectedItem = ycNghiList.selectedItem;
+				navigator.pushView(YcNghiDetail,dataModel);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+		
+		
+	</fx:Declarations>
+	
+	<s:navigationContent >
+		<s:VGroup paddingLeft="5">
+			<s:Image width="150%" height="150%" source="image/Home.png" click="navigator.popToFirstView();"/>
+		</s:VGroup>
+	</s:navigationContent>
+	
+	<s:titleContent>
+		<s:TextInput id="key" width="100%"  prompt="Enter your search ..."  contentBackgroundColor="0xFFFFFF" 
+					 contentBackgroundAlpha="0" skinClass="spark.skins.mobile.TextInputSkin"
+					 borderVisible="true" color="#FFFFFF" paddingLeft="30" paddingRight="30"/>
+		
+	</s:titleContent>
+	
+	<s:actionContent>
+		<s:VGroup paddingRight="5">
+			<s:CalloutButton id="cb" icon="image/addFuntion.png" verticalPosition="after" calloutDestructionPolicy="never"  >
+				<!-- layout the callout content here -->
+				<s:calloutLayout>
+					<s:VerticalLayout/>
+				</s:calloutLayout>
+				<s:calloutContent>
+					<s:Button id="upLoad" label="Upload" width="100%" 
+							  click="upLoad_clickHandler(event)"/>
+					<s:Button id="about" label="About" width="100%" 
+							  click="about_clickHandler(event)"/>
+				</s:calloutContent>
+			</s:CalloutButton> 
+		</s:VGroup>
+		
+	</s:actionContent>
+	
+	<s:VGroup id="mainView" width="100%" paddingLeft="2" paddingRight="2" paddingTop="5" gap="5">
+		<s:Scroller width="100%">
+			<s:VGroup width="100%" height="560" paddingLeft="20">
+				<s:VGroup width="100%" height="100%" >
+					<s:List id="ycNghiList" width="100%"  allowMultipleSelection="true" verticalScrollPolicy="on" 
+							
+							horizontalScrollPolicy="off" borderVisible="false" itemRenderer="renderer.YcNghiItemRenderer"
+							change="ycNghiList_change(event)"
+							> 
+						<s:layout>
+							<s:VerticalLayout paddingBottom="10" gap="10"/>
+						</s:layout>
+					</s:List>
+				</s:VGroup>
+			</s:VGroup>  
+		</s:Scroller> 
+		
+	</s:VGroup>  
+</s:View>
